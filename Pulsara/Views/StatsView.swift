@@ -47,7 +47,7 @@ struct StatsView: View {
 
                         VStack(spacing: 8) {
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                .fill(count == 0 ? PulsaraTheme.surfaceLight : PulsaraTheme.brandGradient)
+                                .fill(count == 0 ? AnyShapeStyle(PulsaraTheme.surfaceLight) : AnyShapeStyle(PulsaraTheme.brandGradient))
                                 .frame(height: height)
                                 .frame(maxWidth: .infinity)
                                 .animation(.spring(response: 0.4, dampingFraction: 0.82), value: count)
