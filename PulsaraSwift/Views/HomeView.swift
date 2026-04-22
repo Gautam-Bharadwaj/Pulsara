@@ -6,7 +6,8 @@ struct HomeView: View {
     @State private var entries: [JournalEntry] = []
     
     var body: some View {
-        NavigationView {
+        TabView {
+            // Home Tab
             ZStack {
                 PulsaraTheme.background.ignoresSafeArea()
                 
@@ -94,7 +95,7 @@ struct HomeView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        Button(action: {}) {
+                        NavigationLink(destination: JournalEntryView()) {
                             Image(systemName: "plus")
                                 .font(.title.bold())
                                 .foregroundColor(.black)
@@ -104,13 +105,37 @@ struct HomeView: View {
                                 .shadow(radius: 5)
                         }
                         .padding()
+                        .padding(.bottom, 60)
                     }
                 }
             }
-            .navigationBarHidden(true)
+            .tabItem {
+                Label("Home", systemImage: "house.fill")
+            }
+
+            // Calendar Tab
+            CalendarView()
+                .tabItem {
+                    Label("Calendar", systemImage: "calendar")
+                }
+
+            // Stats Tab
+            StatsView()
+                .tabItem {
+                    Label("Stats", systemImage: "chart.bar.fill")
+                }
+
+            // Settings Tab
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape.fill")
+                }
         }
+        .accentColor(PulsaraTheme.primary)
         .onAppear {
             updateGreeting()
+            UITabBar.appearance().backgroundColor = UIColor(PulsaraTheme.surface)
+            UITabBar.appearance().unselectedItemTintColor = UIColor(PulsaraTheme.textDim)
         }
     }
     
