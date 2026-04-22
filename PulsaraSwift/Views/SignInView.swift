@@ -9,79 +9,109 @@ struct SignInView: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(colors: [Color(hex: "111827"), .black], startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea()
+            PulsaraTheme.background.ignoresSafeArea()
+            
+            // Background Decor
+            Circle()
+                .fill(PulsaraTheme.primary.opacity(0.05))
+                .frame(width: 300, height: 300)
+                .blur(radius: 60)
+                .offset(x: 100, y: -200)
 
-            VStack(spacing: 24) {
-                // Back Button
+            VStack(spacing: 32) {
+                // Back Button & Header
                 HStack {
                     Button(action: { presentationMode.wrappedValue.dismiss() }) {
-                        Image(systemName: "arrow.left")
-                            .font(.title2)
+                        Image(systemName: "chevron.left")
+                            .font(.title3.bold())
                             .foregroundColor(.white)
+                            .padding(12)
+                            .background(Circle().fill(Color.white.opacity(0.05)))
                     }
                     Spacer()
                 }
                 .padding(.horizontal)
                 .padding(.top, 20)
 
-                VStack(spacing: 8) {
+                VStack(spacing: 12) {
                     Text("Welcome Back")
-                        .font(.title.bold())
+                        .font(.system(size: 32, weight: .bold))
                         .foregroundColor(.white)
                     
-                    Text(role == "inspector" ? "Sign in to access your patients" : "Sign in to your journal")
+                    Text(role == "inspector" ? "Access the monitoring portal" : "Your mental sanctuary awaits")
                         .font(.subheadline)
-                        .foregroundColor(.gray)
+                        .foregroundColor(PulsaraTheme.textSecondary)
                 }
-                .padding(.top, 20)
 
-                // Form
-                VStack(spacing: 16) {
-                    CustomTextField(label: "Email", text: $email, placeholder: "Enter your email")
-                    CustomTextField(label: "Password", text: $password, placeholder: "Enter your password", isSecure: true)
+                // Glassmorphic Form
+                VStack(spacing: 24) {
+                    VStack(alignment: .leading, spacing: 20) {
+                        PremiumTextField(icon: "envelope.fill", placeholder: "Email", text: $email)
+                        PremiumTextField(icon: "lock.fill", placeholder: "Password", text: $password, isSecure: true)
+                    }
                     
                     Button(action: {
-                        // Handle real login
+                        // Real login logic
                     }) {
                         Text("Sign In")
+                            .font(.headline)
                             .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(PulsaraTheme.primary)
+                            .padding(.vertical, 16)
+                            .background(PulsaraTheme.goldGradient)
                             .foregroundColor(.black)
-                            .cornerRadius(12)
+                            .cornerRadius(16)
+                            .shadow(color: PulsaraTheme.primary.opacity(0.3), radius: 10)
                     }
                     .padding(.top, 8)
 
-                    // Dummy Login
+                    HStack {
+                        Rectangle().fill(Color.white.opacity(0.1)).frame(height: 1)
+                        Text("OR").font(.caption2).foregroundColor(PulsaraTheme.textDim)
+                        Rectangle().fill(Color.white.opacity(0.1)).frame(height: 1)
+                    }
+
+                    // Demo Login
                     Button(action: {
                         navigateToHome = true
                     }) {
-                        Text("Login as \(role.capitalized) (Demo)")
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.white.opacity(0.05))
-                            .foregroundColor(.white)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
-                            )
-                            .cornerRadius(12)
+                        HStack {
+                            Image(systemName: "sparkles")
+                                .foregroundStyle(PulsaraTheme.goldGradient)
+                            Text("Try Demo Login")
+                                .font(.headline)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
+                        .background(Color.white.opacity(0.05))
+                        .foregroundColor(.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+                        )
+                        .cornerRadius(16)
                     }
                 }
-                .padding(32)
-                .background(Color(hex: "111827"))
-                .cornerRadius(24)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 24)
-                        .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                .padding(30)
+                .background(
+                    RoundedRectangle(cornerRadius: 32)
+                        .fill(Color.white.opacity(0.02))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 32)
+                                .stroke(Color.white.opacity(0.05), lineWidth: 1)
+                        )
                 )
-                .padding(.horizontal)
+                .padding(.horizontal, 24)
 
                 Spacer()
                 
                 // Navigation to Home
-                NavigationLink(destination: Text("Home Screen for \(role)"), isActive: $navigateToHome) {
+                NavigationLink(destination: Group {
+                    if role == "inspector" {
+                        PatientListView()
+                    } else {
+                        HomeView()
+                    }
+                }, isActive: $navigateToHome) {
                     EmptyView()
                 }
             }
@@ -90,34 +120,29 @@ struct SignInView: View {
     }
 }
 
-struct CustomTextField: View {
-    let label: String
-    @Binding var text: String
+struct PremiumTextField: View {
+    let icon: String
     let placeholder: String
+    @Binding var text: String
     var isSecure: Bool = false
-
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(label)
-                .font(.caption)
-                .foregroundColor(.gray)
+        HStack(spacing: 16) {
+            Image(systemName: icon)
+                .foregroundColor(PulsaraTheme.textDim)
+                .frame(width: 20)
             
             if isSecure {
-                SecureField("", text: $text)
-                    .padding()
-                    .background(Color(hex: "111827"))
-                    .cornerRadius(8)
-                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.3)))
-                    .foregroundColor(.white)
+                SecureField("", text: $text, prompt: Text(placeholder).foregroundColor(PulsaraTheme.textDim))
             } else {
-                TextField("", text: $text)
-                    .padding()
-                    .background(Color(hex: "111827"))
-                    .cornerRadius(8)
-                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.3)))
-                    .foregroundColor(.white)
+                TextField("", text: $text, prompt: Text(placeholder).foregroundColor(PulsaraTheme.textDim))
             }
         }
+        .padding()
+        .background(Color.white.opacity(0.05))
+        .cornerRadius(12)
+        .foregroundColor(.white)
+        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.white.opacity(0.05), lineWidth: 1))
     }
 }
 

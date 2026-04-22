@@ -1,115 +1,127 @@
 import SwiftUI
 
 struct RoleSelectionView: View {
-    @State private var navigateToSignIn = false
-    @State private var selectedRole: String = ""
-
     var body: some View {
         NavigationView {
             ZStack {
-                LinearGradient(colors: [PulsaraTheme.background, Color(hex: "1a1a2e")], startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea()
+                // Premium Background
+                PulsaraTheme.background.ignoresSafeArea()
+                
+                // Decorative elements
+                Circle()
+                    .fill(PulsaraTheme.primary.opacity(0.1))
+                    .frame(width: 400, height: 400)
+                    .blur(radius: 80)
+                    .offset(x: -150, y: -200)
+                
+                Circle()
+                    .fill(PulsaraTheme.accent.opacity(0.05))
+                    .frame(width: 300, height: 300)
+                    .blur(radius: 60)
+                    .offset(x: 150, y: 300)
 
                 VStack(spacing: 40) {
-                    // Header
-                    VStack(spacing: 12) {
-                        Image(systemName: "fitness.timer")
+                    // Logo/Header Area
+                    VStack(spacing: 16) {
+                        Image(systemName: "waveform.path.ecg")
                             .font(.system(size: 60))
-                            .foregroundColor(PulsaraTheme.primary)
+                            .foregroundStyle(PulsaraTheme.goldGradient)
+                            .shadow(color: PulsaraTheme.primary.opacity(0.3), radius: 15)
                         
-                        Text("Pulsara")
-                            .font(.system(size: 40, weight: .bold))
-                            .foregroundColor(PulsaraTheme.text)
+                        Text("PULSARA")
+                            .font(.system(size: 32, weight: .black, design: .rounded))
+                            .tracking(4)
+                            .foregroundColor(.white)
                         
-                        Text("Choose your role to continue")
-                            .font(.system(size: 16))
+                        Text("Elevate Your Mental Wellness")
+                            .font(.subheadline)
                             .foregroundColor(PulsaraTheme.textSecondary)
                     }
                     .padding(.top, 40)
 
-                    // Cards
+                    Text("CHOOSE YOUR ROLE")
+                        .font(.caption.bold())
+                        .foregroundColor(PulsaraTheme.textDim)
+                        .tracking(2)
+
                     VStack(spacing: 20) {
                         RoleCard(
-                            title: "Patient",
-                            description: "I want to track my mental wellness and journal my thoughts.",
-                            iconName: "person.fill",
-                            color: PulsaraTheme.primary
-                        ) {
-                            selectedRole = "patient"
-                            navigateToSignIn = true
-                        }
-
+                            icon: "person.fill",
+                            title: "I am a Patient",
+                            description: "Track your journey, log your thoughts, and find inner peace.",
+                            role: "patient"
+                        )
+                        
                         RoleCard(
-                            title: "Wellness Inspector",
-                            description: "I am a trainer or doctor monitoring my patients.",
-                            iconName: "cross.case.fill",
-                            color: Color.green
-                        ) {
-                            selectedRole = "inspector"
-                            navigateToSignIn = true
-                        }
+                            icon: "shield.fill",
+                            title: "I am an Inspector",
+                            description: "Monitor patient wellness and provide professional insights.",
+                            role: "inspector"
+                        )
                     }
-                    .padding(.horizontal, 20)
+                    .padding(.horizontal, 24)
 
                     Spacer()
-                }
-                
-                // Navigation Link (Hidden)
-                NavigationLink(destination: SignInView(role: selectedRole), isActive: $navigateToSignIn) {
-                    EmptyView()
+                    
+                    Text("By continuing, you agree to our Terms & Privacy Policy")
+                        .font(.caption2)
+                        .foregroundColor(PulsaraTheme.textDim)
+                        .padding(.bottom, 20)
                 }
             }
-            .navigationBarHidden(true)
         }
     }
 }
 
 struct RoleCard: View {
+    let icon: String
     let title: String
     let description: String
-    let iconName: String
-    let color: Color
-    let action: () -> Void
-
+    let role: String
+    
     var body: some View {
-        Button(action: action) {
+        NavigationLink(destination: SignInView(role: role)) {
             HStack(spacing: 20) {
                 ZStack {
-                    Circle()
-                        .fill(color.opacity(0.1))
-                        .frame(width: 60, height: 60)
+                    RoundedRectangle(cornerRadius: 15)
+                        .fill(PulsaraTheme.surfaceLight)
+                        .frame(width: 56, height: 56)
                     
-                    Image(systemName: iconName)
-                        .font(.system(size: 24))
-                        .foregroundColor(color)
+                    Image(systemName: icon)
+                        .font(.title2)
+                        .foregroundStyle(PulsaraTheme.goldGradient)
                 }
-
+                
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
                         .font(.headline)
-                        .foregroundColor(PulsaraTheme.text)
+                        .foregroundColor(.white)
                     
                     Text(description)
-                        .font(.subheadline)
+                        .font(.caption)
                         .foregroundColor(PulsaraTheme.textSecondary)
+                        .lineLimit(2)
                         .multilineTextAlignment(.leading)
                 }
-
+                
                 Spacer()
-
+                
                 Image(systemName: "chevron.right")
+                    .font(.caption.bold())
                     .foregroundColor(PulsaraTheme.textDim)
             }
             .padding(20)
             .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(PulsaraTheme.surface)
+                RoundedRectangle(cornerRadius: 24)
+                    .fill(Color.white.opacity(0.03))
                     .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(PulsaraTheme.surfaceLight, lineWidth: 1)
+                        RoundedRectangle(cornerRadius: 24)
+                            .stroke(Color.white.opacity(0.08), lineWidth: 1)
                     )
             )
+            .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
         }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 

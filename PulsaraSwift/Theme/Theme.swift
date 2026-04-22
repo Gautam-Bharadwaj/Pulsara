@@ -1,15 +1,28 @@
 import SwiftUI
 
 struct PulsaraTheme {
-    static let background = Color(hex: "0A0A0A")
-    static let surface = Color(hex: "1A1A1A")
-    static let surfaceLight = Color(hex: "2A2A2A")
+    static let background = Color(hex: "050505")
+    static let surface = Color(hex: "121212")
+    static let surfaceLight = Color(hex: "1C1C1E")
     static let primary = Color(hex: "FFD600")
+    static let primaryLight = Color(hex: "FFE082")
     static let accent = Color(hex: "FFAB00")
     static let text = Color.white
-    static let textSecondary = Color(hex: "B0B0B0")
-    static let textDim = Color(hex: "666666")
-    static let error = Color(hex: "FF5252")
+    static let textSecondary = Color(hex: "A1A1AA")
+    static let textDim = Color(hex: "52525B")
+    static let error = Color(hex: "EF4444")
+    
+    static let mainGradient = LinearGradient(
+        colors: [Color(hex: "18181B"), Color(hex: "09090B")],
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing
+    )
+    
+    static let goldGradient = LinearGradient(
+        colors: [Color(hex: "FFD600"), Color(hex: "FFAB00")],
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing
+    )
 }
 
 extension Color {

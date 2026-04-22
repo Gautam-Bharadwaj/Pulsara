@@ -6,6 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BDB54BE22F994666006D4A14 /* PatientListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB54BDC2F994666006D4A14 /* PatientListView.swift */; };
+		BDB54BE32F994666006D4A14 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB54BE02F994666006D4A14 /* StatsView.swift */; };
+		BDB54BE42F994666006D4A14 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB54BDA2F994666006D4A14 /* HomeView.swift */; };
+		BDB54BE52F994666006D4A14 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB54BDE2F994666006D4A14 /* SettingsView.swift */; };
+		BDB54BE62F994666006D4A14 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB54BDF2F994666006D4A14 /* SignInView.swift */; };
+		BDB54BE72F994666006D4A14 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB54BD92F994666006D4A14 /* CalendarView.swift */; };
+		BDB54BE82F994666006D4A14 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB54BD72F994666006D4A14 /* Theme.swift */; };
+		BDB54BE92F994666006D4A14 /* JournalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB54BDB2F994666006D4A14 /* JournalEntryView.swift */; };
+		BDB54BEA2F994666006D4A14 /* RoleSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB54BDD2F994666006D4A14 /* RoleSelectionView.swift */; };
+		BDB54BEC2F99473A006D4A14 /* PulsaraComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB54BEB2F99473A006D4A14 /* PulsaraComponents.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		BDB54B7E2F99409C006D4A14 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +40,16 @@
 		BDB54B702F99409B006D4A14 /* Pulsara.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pulsara.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDB54B7D2F99409C006D4A14 /* PulsaraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PulsaraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDB54B872F99409C006D4A14 /* PulsaraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PulsaraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDB54BD72F994666006D4A14 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		BDB54BD92F994666006D4A14 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		BDB54BDA2F994666006D4A14 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BDB54BDB2F994666006D4A14 /* JournalEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryView.swift; sourceTree = "<group>"; };
+		BDB54BDC2F994666006D4A14 /* PatientListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientListView.swift; sourceTree = "<group>"; };
+		BDB54BDD2F994666006D4A14 /* RoleSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionView.swift; sourceTree = "<group>"; };
+		BDB54BDE2F994666006D4A14 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BDB54BDF2F994666006D4A14 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		BDB54BE02F994666006D4A14 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		BDB54BEB2F99473A006D4A14 /* PulsaraComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsaraComponents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +98,10 @@
 		BDB54B672F99409B006D4A14 = {
 			isa = PBXGroup;
 			children = (
+				BDB54BD82F994666006D4A14 /* Theme 2 */,
+				BDB54BE12F994666006D4A14 /* Views */,
+				BDB54B9A2F9940B2006D4A14 /* Models */,
+				BDB54B9B2F9940B2006D4A14 /* Services */,
 				BDB54B722F99409B006D4A14 /* Pulsara */,
 				BDB54B802F99409C006D4A14 /* PulsaraTests */,
 				BDB54B8A2F99409C006D4A14 /* PulsaraUITests */,
@@ -90,6 +117,44 @@
 				BDB54B872F99409C006D4A14 /* PulsaraUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BDB54B9A2F9940B2006D4A14 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BDB54B9B2F9940B2006D4A14 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BDB54BD82F994666006D4A14 /* Theme 2 */ = {
+			isa = PBXGroup;
+			children = (
+				BDB54BD72F994666006D4A14 /* Theme.swift */,
+			);
+			path = "Theme 2";
+			sourceTree = "<group>";
+		};
+		BDB54BE12F994666006D4A14 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BDB54BD92F994666006D4A14 /* CalendarView.swift */,
+				BDB54BDA2F994666006D4A14 /* HomeView.swift */,
+				BDB54BDB2F994666006D4A14 /* JournalEntryView.swift */,
+				BDB54BDC2F994666006D4A14 /* PatientListView.swift */,
+				BDB54BDD2F994666006D4A14 /* RoleSelectionView.swift */,
+				BDB54BDE2F994666006D4A14 /* SettingsView.swift */,
+				BDB54BDF2F994666006D4A14 /* SignInView.swift */,
+				BDB54BE02F994666006D4A14 /* StatsView.swift */,
+				BDB54BEB2F99473A006D4A14 /* PulsaraComponents.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +301,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDB54BE22F994666006D4A14 /* PatientListView.swift in Sources */,
+				BDB54BE32F994666006D4A14 /* StatsView.swift in Sources */,
+				BDB54BEC2F99473A006D4A14 /* PulsaraComponents.swift in Sources */,
+				BDB54BE42F994666006D4A14 /* HomeView.swift in Sources */,
+				BDB54BE52F994666006D4A14 /* SettingsView.swift in Sources */,
+				BDB54BE62F994666006D4A14 /* SignInView.swift in Sources */,
+				BDB54BE72F994666006D4A14 /* CalendarView.swift in Sources */,
+				BDB54BE82F994666006D4A14 /* Theme.swift in Sources */,
+				BDB54BE92F994666006D4A14 /* JournalEntryView.swift in Sources */,
+				BDB54BEA2F994666006D4A14 /* RoleSelectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

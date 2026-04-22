@@ -9,9 +9,29 @@ import SwiftUI
 
 @main
 struct PulsaraApp: App {
+    @StateObject private var store = AppDataStore()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
+                .environmentObject(store)
+        }
+    }
+}
+
+struct RootView: View {
+    @EnvironmentObject private var store: AppDataStore
+
+    var body: some View {
+        Group {
+            switch store.currentRole {
+            case .patient:
+                HomeView()
+            case .inspector:
+                PatientListView()
+            case nil:
+                RoleSelectionView()
+            }
         }
     }
 }

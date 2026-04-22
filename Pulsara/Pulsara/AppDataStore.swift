@@ -1,4 +1,5 @@
-import Foundation
+import SwiftUI
+import Combine
 
 struct JournalEntry: Identifiable, Codable, Equatable {
     let id: UUID
@@ -152,7 +153,11 @@ final class AppDataStore: ObservableObject {
     }
 
     private func saveSession() {
-        UserDefaults.standard.set(currentRole?.rawValue, forKey: roleKey)
+        if let currentRole {
+            UserDefaults.standard.set(currentRole.rawValue, forKey: roleKey)
+        } else {
+            UserDefaults.standard.removeObject(forKey: roleKey)
+        }
         UserDefaults.standard.set(signedInEmail, forKey: emailKey)
     }
 
